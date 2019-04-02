@@ -13,23 +13,10 @@ input_numbers(size_t count) {
     return result;
 }
 
-int
-main() {
-    // ¬вод данных
-
-    size_t number_count;
-    cerr << "Enter number count: ";
-    cin >> number_count;
-    vector<double> numbers = input_numbers(number_count);
-
-
-    size_t bin_count;
-    cerr << "Enter column count: ";
-    cin >> bin_count;
-
-    // ќбработка данных
-    double min = numbers[0];
-    double max = numbers[0];
+void
+find_minmax(vector<double> numbers, double& min, double& max) {
+    min = numbers[0];
+    max = numbers[0];
     for (double number : numbers) {
         if (number < min) {
             min = number;
@@ -38,6 +25,25 @@ main() {
             max = number;
         }
     }
+}
+
+int
+main() {
+    // ¬вод данных
+
+    size_t number_count;
+    cerr << "Enter number count: ";
+    cin >> number_count;
+    const auto numbers = input_numbers(number_count);
+
+
+    size_t bin_count;
+    cerr << "Enter column count: ";
+    cin >> bin_count;
+
+    // ќбработка данных
+    double min, max;
+    find_minmax(numbers, min, max);
 
     vector<size_t> bins(bin_count);
     for (double number : numbers) {
